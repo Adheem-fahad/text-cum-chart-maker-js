@@ -37,6 +37,8 @@ body {
     height: 95vh;
 }
 .actbr {
+    position: relative;
+    /* related to model */
     width: 92%;
     height: 95vh;
     overflow-y: scroll;
@@ -56,4 +58,13 @@ body {
 .mainEditor h1 {
     display: inline;
     margin-left: 20px;
+}
+
+.box  {
+    position: absolute;
+    top: 0;
+    /* related to box model */
+    width: 8rem;
+    height: 4rem;
+    background-color: red;
 }

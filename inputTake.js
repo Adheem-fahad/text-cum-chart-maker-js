@@ -6,6 +6,7 @@ export default class InputTaker {
         this.interval;
         this.textCache;
         this.htmlCache = '';
+        this.shouldType = true;
         this.starterFn(x)
     }
     completelyParse(x) {
@@ -81,24 +82,26 @@ export default class InputTaker {
         //     }
         // }, 600)
     }
+    // THIS IS THE AFTER CODE:
+    afterCodeSet(x, e) {
+
+        this.textCache = this.parseKeyboard(e.key);
+        this.segmenteros()
+        x.innerHTML = ''
+        this.completelyParse(x)
+        this.isNow = false
+    }
     starterFn(x)  {
         this.textCache = '';
         document.documentElement.addEventListener('keydown', e => {
             // alert('k')
             // before: x.innerHTML = this.parseKeyboard(e.key);
-
             if(e.code == 'Space') e.preventDefault()
-
-//afterCode: 
-            this.textCache = this.parseKeyboard(e.key);
-//afterCode: 
-            this.segmenteros()
-//afterCode: 
-            x.innerHTML = ''
-//afterCode: 
-            this.completelyParse(x)
-//afterCode: 
-            this.isNow = false
+            if(this.shouldType) {
+                this.afterCodeSet(x, e)
+            } else {
+                // hello
+            }
             // before:this.textCache = this.parseKeyboard(e.key);
             // this.textCache = x.innerHTML;
             //  

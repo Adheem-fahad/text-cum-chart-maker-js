@@ -1,13 +1,20 @@
 import { el, css } from './utilities.js'
+import { StickyNote } from './stickyNote.js'
 
-let TSK = document.querySelector('.tskbr');
-
+const TSK = document.querySelector('.tskbr');
+const MED = document.querySelector('.mainEditor')
+const ACT = document.querySelector('.actbr')
 let componentsObj = [
   {
-    name: 'File'
+    name: 'File',
+    event: () => {
+    }
   },
   {
-    name: 'Decor'
+    name: 'Decor',
+    event: () => {
+
+    }
   },
   {
     name: 'Theme',
@@ -30,14 +37,14 @@ let componentsObj = [
   {
     name: 'Construct',
     event: () => {
-      
+      let newEl = new StickyNote(el('div', ACT, ['class', 'box']))
     }
   }
 ]
 
 export function taskbarCompts() {
     componentsObj.forEach(x => {
-      let DOM = el('div', TSK, 'class', 'component')
+      let DOM = el('div', TSK, ['class', 'component'])
       DOM.textContent = x.name;
       DOM.onclick = () => {
         x.event()
