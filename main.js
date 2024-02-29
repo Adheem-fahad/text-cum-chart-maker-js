@@ -1,8 +1,8 @@
 import { el, css } from './utilities.js'
-import tskMk from './task.js'
+import {taskbarCompts} from './task.js'
 import creator from './inputTake.js'
 
-tskMk()
+taskbarCompts()
 
 let Creator = new creator(document.querySelector('.mainEditor'))
 // let Creator = new creator(document.querySelector('code'))
