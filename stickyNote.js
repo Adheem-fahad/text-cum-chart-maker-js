@@ -4,9 +4,24 @@ import creator from './inputTake.js'
 export class StickyNote {
     constructor(element) {
         this.father = element;
-        // new creator(this.father)
+
+        this.headerBr = el('div', this.father, ['class', 'hbr'])
+
+        this.addingEditCont()
         this.mousetouch()
     }
+
+    addingEditCont() {
+        this.textCnt = el('h3', this.father, ['contentEditable', 'true'])
+
+        this.textCnt.focus()
+        this.textCnt.onclick = () => {
+            document.addEventListener('keydown', () => {
+                this.lclStredtxt = this.textCnt.textContent
+            })
+        }
+    }
+
     closeDrag() {
         document.onmousemove = null;
     }
@@ -27,12 +42,17 @@ export class StickyNote {
         }
     }
     mousetouch() {
-        this.father.onmousedown = (e) => {
-            e.preventDefault();
+        let kundi = true;
+        this.textCnt.onmousedown = () => {
+            // alert(kundi)
+            kundi = false;
+        }
+        if(kundi) {
+            this.father.onmousedown = (e) => {
+                // e.preventDefault();
 
-            console.log('Hello')
-
-            this.draggable(e.offsetX, e.offsetY)
+                this.draggable(e.offsetX, e.offsetY)
+            }
         }
     }
 }

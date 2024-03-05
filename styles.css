@@ -64,7 +64,20 @@ body {
     position: absolute;
     top: 0;
     /* related to box model */
-    width: 8rem;
-    height: 4rem;
-    background-color: red;
+    width: 17rem;
+    height: 7rem;
+    background-color: rgb(125, 174, 209);
+    border: 1px solid rgba(0, 0, 255, 0.358);
+    border-radius: 5px;
+}
+
+.hbr {
+    width: 100%;
+    height: 15px;
+    background-color: green;
+}
+
+h3 {
+    outline: none;
+
 }

@@ -2,11 +2,15 @@ import { el, css } from './utilities.js'
 
 export default class InputTaker {
     constructor(x) {
+        // for the main Class
+        this.father = x;
+
         this.isNow = true;
         this.interval;
         this.textCache;
         this.htmlCache = '';
         this.shouldType = true;
+        // this.shouldType = false;
         this.starterFn(x)
     }
     completelyParse(x) {
@@ -99,8 +103,6 @@ export default class InputTaker {
             if(e.code == 'Space') e.preventDefault()
             if(this.shouldType) {
                 this.afterCodeSet(x, e)
-            } else {
-                // hello
             }
             // before:this.textCache = this.parseKeyboard(e.key);
             // this.textCache = x.innerHTML;

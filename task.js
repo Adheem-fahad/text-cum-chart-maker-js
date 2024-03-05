@@ -36,18 +36,39 @@ let componentsObj = [
   },
   {
     name: 'Construct',
-    event: () => {
+    event: (site) => {
       let newEl = new StickyNote(el('div', ACT, ['class', 'box']))
+
+      site.push(newEl)
+
+    },
+    extra: (passMe) => {
+      passMe.classList.add('constrct')
+      passMe.textContent = ''
+    }
+  },
+  {
+    name: 'Active',
+    event: () => {
+
+    },
+    extra: (passSme) => {
+      passSme.style.height = '200px'
     }
   }
 ]
 
-export function taskbarCompts() {
+export function taskbarCompts(site, active) {
     componentsObj.forEach(x => {
       let DOM = el('div', TSK, ['class', 'component'])
+
+      x.dom = DOM
       DOM.textContent = x.name;
       DOM.onclick = () => {
-        x.event()
+        x.event(site)
       }
+      if(x.extra) x.extra(DOM)
     })
+
+    return componentsObj;
 }
