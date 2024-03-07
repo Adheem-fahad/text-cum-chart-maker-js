@@ -14,7 +14,7 @@ export default class InputTaker {
         this.starterFn(x)
     }
     completelyParse(x) {
-        console.log(this.htmlCache)
+        // console.log(this.htmlCache)
         this.htmlCache.forEach(val => {
             if(val == '</br>') {
                 el('br', x)

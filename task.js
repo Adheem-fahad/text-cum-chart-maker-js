@@ -8,6 +8,10 @@ let componentsObj = [
   {
     name: 'File',
     event: () => {
+    },
+    extra: (pass) => {
+      pass.classList.add('fillee')
+      pass.textContent = ''
     }
   },
   {
@@ -32,6 +36,10 @@ let componentsObj = [
                     document.documentElement.style.setProperty('--opp-clr', 'white');
                     document.documentElement.style.setProperty('--bd-clr', 'rgba(255, 255, 255, 0.38)');
                 }
+    },
+    extra: (pass) => {
+      pass.classList.add('thame')
+      pass.textContent = ''
     }
   },
   {

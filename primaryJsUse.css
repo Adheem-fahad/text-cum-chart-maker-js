@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@600&display=swap');
+
 .constrct {
     aspect-ratio: 1;
 
@@ -8,8 +11,72 @@
 
     transition: 0.2s ease-in-out;
 }
-.constrct:hover {
+.constrct:hover,
+.fillee:hover,
+.thame:hover {
     cursor: pointer;
     border: none;
     box-shadow: 0 0 50px rgba(255, 255, 255, 0.501);
+}
+
+.fillee {
+    aspect-ratio: 1;
+
+    background-image: url('https://icon-library.com/images/white-folder-icon/white-folder-icon-24.jpg');
+    background-position: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+
+    transition: 0.2s linear;
+}
+
+.thame {
+    aspect-ratio: 1;
+
+    background-image: url('https://png.pngtree.com/png-vector/20190328/ourmid/pngtree-vector-sun-icon-png-image_883996.jpg');
+    background-position: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    transition: 0.2s linear;
+}
+
+.box  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    position: absolute;
+    top: 0;
+    /* related to box model */
+    width: 19rem;
+    height: 11rem;
+    border: 2px solid rgba(92, 92, 255, 0.358);
+    border-radius: 5px;
+    font-family: 'poppins';
+}
+
+.boxClick {
+    border: 2px solid rgba(177, 177, 255, 0.542);
+}
+
+.piCl {
+    width: 10px;
+    aspect-ratio: 1;
+    background-color: #bcbcbcd2;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 100%;
+}
+
+.fathersson {
+    width: 100%;
+    height: 100%;
+    z-index: -11;
+
+    position: relative;
+}
+h3:hover {
+    cursor: text;
 }
