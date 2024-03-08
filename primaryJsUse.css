@@ -41,10 +41,10 @@
 }
 
 .box  {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-
+    align-items: center; */
+    display: inline-block;
 
     position: absolute;
     top: 0;
@@ -55,7 +55,10 @@
     border-radius: 5px;
     font-family: 'poppins';
 }
-
+.box * {
+    display: inline;
+    margin-left: 7px;
+}
 .boxClick {
     border: 2px solid rgba(177, 177, 255, 0.542);
 }
@@ -79,4 +82,10 @@
 }
 h3:hover {
     cursor: text;
+}
+
+.clrOpt { 
+    width: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
 }

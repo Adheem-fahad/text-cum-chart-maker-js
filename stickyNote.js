@@ -1,20 +1,21 @@
 import { el, css } from './utilities.js'
-import creator from './inputTake.js'
+import Creator from './inputTake.js'
 
 export class StickyNote {
     constructor(element) {
         this.father = element;
-
+        this.creaiososis = new Creator(this.father)
         // this.headerBr = el('div', this.father, ['class', 'hbr'])
 
-        this.addingEditCont()
-        this.mousetouch()
+        // this.addingEditCont()
+        
+        this.father.onmousedown = (e) => { this.mousetouch(e) }
         this.scaffolding()
     }
 
     addingEditCont() {
         this.textCnt = el('h3', this.father, ['contentEditable', 'true'])
-        
+        // el('span', this.textCnt)
         this.textCnt.focus()
         this.textCnt.onclick = () => {
             document.addEventListener('keydown', () => {
@@ -49,7 +50,7 @@ export class StickyNote {
                 this.scafdrag()
 
                 console.log('hey')
-            }
+            } 
         }
     }
 
@@ -77,23 +78,19 @@ export class StickyNote {
             }
         }
     }
-    mousetouch() {
+    mousetouch(e) {
         // let kundi = true;
         // this.textCnt.onmousedown = () => {
         //     // alert(kundi)
         //     kundi = false;
         // }
         // if(kundi) {
-            this.father.onmousedown = (e) => {
                 // e.preventDefault();
                 this.draggable(e.offsetX, e.offsetY)
 
-                this.textCnt.setAttribute('tabindex', '-1')
-                this.textCnt.focus()
+                // IFTEXTH1:this.textCnt.setAttribute('tabindex', '-1'); this.textCnt.focus()
 
                 this.father.style.border = '2px solid rgba(177, 177, 255, 0.542)'
-
-            }
         // }
     }
 }

@@ -8,16 +8,29 @@ class MainClass {
         this.alls = [this.creator]
         this.tsk = taskbarCompts(this.alls)
         this.clickEventManager()
+        this.recentEl = ''
+        this.tsk[4].activatedColors(this.recentEl) 
     }
 
     clickEventManager() {
         document.addEventListener('click', (e) => {
             this.recentEl = e.target
 
-            this.tsk[4].dom.textContent = e.target
+            
 
-            if(this.creator.father == this.recentEl) this.creator.shouldType = true
-            else this.creator.shouldType = false;
+            this.alls.forEach(element => {
+                if(this.recentEl == element.father){ 
+                    if(element.creaiososis) {
+                        element.creaiososis.shouldType = true;
+                    } else element.shouldType = true;
+                }
+                else {
+                    if(element.creaiososis) element.creaiososis.shouldType = false
+                    else element.shouldType = false
+                }
+                // console.log(this.alls)
+            })
+
 
         }, false)
     }

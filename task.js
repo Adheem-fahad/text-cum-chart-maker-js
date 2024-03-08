@@ -62,6 +62,27 @@ let componentsObj = [
     },
     extra: (passSme) => {
       passSme.style.height = '200px'
+    },
+
+    activatedColors: (target) => {
+      let clrOptions = [
+        [el('div', componentsObj[4].dom, ['class', 'clrOpt']), 'red'],
+        [el('div', componentsObj[4].dom, ['class', 'clrOpt']), 'green'],
+        [el('div', componentsObj[4].dom, ['class', 'clrOpt']), 'yellow'],
+        [el('div', componentsObj[4].dom, ['class', 'clrOpt']), 'blue'],
+        [el('div', componentsObj[4].dom, ['class', 'clrOpt']), 'white'],
+        [el('div', componentsObj[4].dom, ['class', 'clrOpt']), 'black'],
+      ]
+
+    clrOptions.forEach(element => {
+      element[0].style.background = element[1]
+
+      element[0].onclick = () => {
+
+        console.log(target)
+        target.style.background = element[1]
+      }
+    })
     }
   }
 ]
