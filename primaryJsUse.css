@@ -50,9 +50,13 @@
     top: 0;
     /* related to box model */
     width: 19rem;
-    height: 11rem;
+    /* height: 11rem; */
+    height: 19rem;
     border: 2px solid rgba(92, 92, 255, 0.358);
-    border-radius: 5px;
+    /* border-left: 2px solid red;
+    border-right: 2px solid green;
+    border-bottom: 2px solid yellow; */
+    /* border-radius: 100%; */
     font-family: 'poppins';
 }
 .box * {
@@ -88,4 +92,12 @@ h3:hover {
     width: 15px;
     aspect-ratio: 1;
     border-radius: 50%;
+}
+
+.tempo {
+    position: absolute;
+    /* temporary styles */
+    /* width: 10rem; */
+    /* height: 10rem; */
+    background-color: rgba(38, 42, 230, 0.469);
 }

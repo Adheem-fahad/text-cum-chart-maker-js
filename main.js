@@ -1,6 +1,7 @@
 import { el, css } from './utilities.js'
 import {taskbarCompts} from './task.js'
 import creator from './inputTake.js'
+import TempDivMker from './selecing.js'
 
 class MainClass {
     constructor() {
@@ -8,14 +9,15 @@ class MainClass {
         this.alls = [this.creator]
         this.tsk = taskbarCompts(this.alls)
         this.clickEventManager()
-        this.recentEl = ''
-        this.tsk[4].activatedColors(this.recentEl) 
-    }
 
+        this.tempdivmnger = new TempDivMker(this.creator.father)
+    }
+    
     clickEventManager() {
         document.addEventListener('click', (e) => {
             this.recentEl = e.target
-
+            
+            // this.tsk[4].activatedColors(this.recentEl) 
             
 
             this.alls.forEach(element => {
@@ -33,6 +35,12 @@ class MainClass {
 
 
         }, false)
+        document.onmouseup = () => {
+            console.log(this.tempdivmnger)
+            if(this.tempdivmnger.exportedDiv) {
+                console.log(this.tempdivmnger.exportedDiv)
+            }
+        }
     }
 }
 
