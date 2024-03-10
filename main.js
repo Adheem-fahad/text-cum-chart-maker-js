@@ -1,7 +1,8 @@
 import { el, css } from './utilities.js'
 import {taskbarCompts} from './task.js'
 import creator from './inputTake.js'
-import TempDivMker from './selecing.js'
+import TempDivMker from './selecting.js'
+import { StickyNote } from './stickyNote.js'
 
 class MainClass {
     constructor() {
@@ -10,9 +11,12 @@ class MainClass {
         this.tsk = taskbarCompts(this.alls)
         this.clickEventManager()
 
-        this.tempdivmnger = new TempDivMker(this.creator.father)
+        this.tempdivmnger = new TempDivMker(this.creator.father, this.tempDivstore)
     }
-    
+    tempDivstore(temp) {
+        let newnote = new StickyNote(temp)
+        // console.log(newnote)
+    }
     clickEventManager() {
         document.addEventListener('click', (e) => {
             this.recentEl = e.target
@@ -35,12 +39,6 @@ class MainClass {
 
 
         }, false)
-        document.onmouseup = () => {
-            console.log(this.tempdivmnger)
-            if(this.tempdivmnger.exportedDiv) {
-                console.log(this.tempdivmnger.exportedDiv)
-            }
-        }
     }
 }
 

@@ -9,7 +9,10 @@ export class StickyNote {
 
         // this.addingEditCont()
         
-        this.father.onmousedown = (e) => { this.mousetouch(e) }
+        this.father.addEventListener('mousedown', (e) => {
+            this.mousetouch(e)
+        }) 
+
         this.scaffolding()
     }
 
@@ -25,10 +28,9 @@ export class StickyNote {
     }
 
 
-    scafdrag() {
-        document.onmousemove = () => {
-            css(el('div', document.documentElement), {width: `${e.clientX }px`,height: '30px',background: 'red',position: 'fixed',top: `${e.clientY}px`, left: 0})
-        }
+    scafdrag(e) {
+        // document.addEventListener('mousemove', () => {/
+        // })
     }
     scaffolding() {
         const allCircs = [] 
@@ -43,25 +45,29 @@ export class StickyNote {
         for(let i = 0; i < 4; i++) {
             allCircs.push(el('div', this.father, ['class', 'piCl']))
 
-            console.log(allPos[i])
+            // console.log(allPos[i])
             css(allCircs[i], allPos[i])
 
-            allCircs.onmousedown = () => {
-                this.scafdrag()
+            allCircs.forEach(element => {
+                addEventListener('mousedown', (e) => {
+                    this.scafdrag(e)
 
-                console.log('hey')
-            } 
+                    // console.log('hey')
+                })
+            })
         }
     }
 
     closeDrag() {
-        document.onmousemove = null;
+        // document.removeEventListener('mousemove', this.draggable)
+        document.onmousemove = null
 
         this.father.style.border = '2px solid rgba(92, 92, 255, 0.358)'
     }
-    draggable(num1, num2) {
-        document.onmousemove = (e) => {
+    draggable(num1, num2, e) {
             // console.log(e.offsetY, e.offsetX)
+            console.log('moving')
+
             const DOC_TSKw = document.querySelector('.tskbr').clientWidth
 
             css(this.father, {
@@ -69,28 +75,19 @@ export class StickyNote {
                 left: `${e.clientX - DOC_TSKw - num1}px`
             })
 
-            document.onmouseup = (e) => {
+            document.addEventListener('mouseup', (e) => {
+                console.log('yo shit.. its up')
                 e.preventDefault()
 
                 this.closeDrag()
-
-                // TESTINGCODE: css(el('div', document.documentElement), {width: `${e.clientX }px`,height: '30px',background: 'red',position: 'fixed',top: `${e.clientY}px`, left: 0;})
-            }
-        }
+            })
     }
     mousetouch(e) {
-        // let kundi = true;
-        // this.textCnt.onmousedown = () => {
-        //     // alert(kundi)
-        //     kundi = false;
-        // }
-        // if(kundi) {
-                // e.preventDefault();
-                this.draggable(e.offsetX, e.offsetY)
-
-                // IFTEXTH1:this.textCnt.setAttribute('tabindex', '-1'); this.textCnt.focus()
+                // document.addEventListener('mousemove', (e) => { this.draggable(e.offsetX, e.offsetY, e) })
+                document.onmousemove = (e) => {
+                    this.draggable(e.offsetX, e.offsetY, e)
+                }
 
                 this.father.style.border = '2px solid rgba(177, 177, 255, 0.542)'
-        // }
     }
 }
