@@ -9,36 +9,10 @@ class MainClass {
         this.creator = new creator(document.querySelector('.mainEditor'));
         this.alls = [this.creator]
         this.tsk = taskbarCompts(this.alls)
-        this.clickEventManager()
+        // this.clickEventManager()
 
+        console.log(this.creator.father)
         this.tempdivmnger = new TempDivMker(this.creator.father, this.tempDivstore)
-    }
-    tempDivstore(temp) {
-        let newnote = new StickyNote(temp)
-        // console.log(newnote)
-    }
-    clickEventManager() {
-        document.addEventListener('click', (e) => {
-            this.recentEl = e.target
-            
-            // this.tsk[4].activatedColors(this.recentEl) 
-            
-
-            this.alls.forEach(element => {
-                if(this.recentEl == element.father){ 
-                    if(element.creaiososis) {
-                        element.creaiososis.shouldType = true;
-                    } else element.shouldType = true;
-                }
-                else {
-                    if(element.creaiososis) element.creaiososis.shouldType = false
-                    else element.shouldType = false
-                }
-                // console.log(this.alls)
-            })
-
-
-        }, false)
     }
 }
 

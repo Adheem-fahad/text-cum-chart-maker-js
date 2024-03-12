@@ -1,55 +1,44 @@
-import { el, css } from './utilities.js'
+import { el, css } from './utilities.js';
+
+let someshit;
 
 export default class MaketempDiv {
     constructor(x, y) {
-        this.father = x
-        this.onstart()
-        this.y = y
+        this.father = x;
+        this.onstart();
+        this.y = y;
     }
-    exportFn(y = this.y) {
-        // console.log(this.ok)
-        // if(this.ok == 200 && this.temp) {
-            // console.log('reached.... station exportFn')
-
-            // document.removeEventListener('mousemove', this.dragfn)
-
-            document.onmousemove = null
-    
-            this.exportedDiv = this.temp
-        
-            // y(this.exportedDiv)
-        // } else if(this.temp) { 
-            // document.removeEventListener('mousemove', this.dragfn)
-
-            this.temp.parentElement.removeChild(this.temp)
-            this.temp = ''
-        // }
-    }
-    dragfn(e) {
+    close(eventArg) {
+        document.removeEventListener('mousemove', someshit)
+    } 
+    dragass(eventArg) {
 
         css(this.temp, {
-            width: `${e.clientX - this.initPos[0]}px`,
-            height: `${e.clientY - this.initPos[1]}px`
+            width: `${eventArg.clientX - this.initPos[0]}px`,
+            height: `${eventArg.clientY - this.initPos[1]}px`
         })
 
-        // document.addEventListener('mouseup', this.exportFn())
-        document.onmouseup = (ev) => {
-            this.exportFn()
-        }
+        this.father.parentElement.addEventListener('mouseup', (e) => {
+            this.close(e)
+        })
     }
-    onstart(y) {
+    onclickFn(eventArg) {
+        this.initPos = [eventArg.clientX, eventArg.clientY];
+
+        this.temp = el('div', this.father, ['class', 'tempo'])
+    
+        css(this.temp, {
+            left: `${this.initPos[0] - document.querySelector('.tskbr').clientWidth}px`,
+            top: `${this.initPos[1] + this.father.parentElement.scrollTop}px`
+        })
+
+        document.addEventListener('mousemove', someshit = (e) => {
+            this.dragass(e)
+        })
+    }
+    onstart() {
         this.father.addEventListener('mousedown', (e) => {
-
-            this.temp = el('div', this.father, ['class', 'tempo'])
-            this.initPos = [e.clientX, e.clientY]
-            css(this.temp, {
-                left: `${this.initPos[0] - document.querySelector('.tskbr').clientWidth}px`,
-                top: `${this.initPos[1] + this.father.parentElement.scrollTop}px`
-            })
-
-            document.onmousemove = (ev) => {
-                this.dragfn(ev)
-            }
-        }, false);
+            this.onclickFn(e)
+        })
     }
 }
