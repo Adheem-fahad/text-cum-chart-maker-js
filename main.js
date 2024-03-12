@@ -2,7 +2,7 @@ import { el, css } from './utilities.js'
 import {taskbarCompts} from './task.js'
 import creator from './inputTake.js'
 import TempDivMker from './selecting.js'
-// import { StickyNote } from './stickyNote.js'
+import { StickyNote } from './stickyNote.js'
 
 class MainClass {
     constructor() {
@@ -12,6 +12,9 @@ class MainClass {
         // this.clickEventManager()
 
         console.log(this.creator.father)
+
+
+        // this.devlop()
         this.tempdivmnger = new TempDivMker(this.creator.father, this.tempDivstore)
     }
 }

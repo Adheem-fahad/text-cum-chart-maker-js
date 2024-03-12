@@ -1,5 +1,5 @@
 import { el, css } from './utilities.js'
-// import { StickyNote } from './stickyNote.js'
+import { StickyNote } from './stickyNote.js'
 
 const TSK = document.querySelector('.tskbr');
 const MED = document.querySelector('.mainEditor')

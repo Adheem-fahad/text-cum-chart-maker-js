@@ -1,6 +1,7 @@
+import { StickyNote } from './stickyNote.js';
 import { el, css } from './utilities.js';
 
-let someshit;
+let dragfnCls, upfnCls;
 
 export default class MaketempDiv {
     constructor(x, y) {
@@ -9,7 +10,12 @@ export default class MaketempDiv {
         this.y = y;
     }
     close(eventArg) {
-        document.removeEventListener('mousemove', someshit)
+        document.removeEventListener('mousemove', dragfnCls)
+        this.father.parentElement.removeEventListener('mouseup', upfnCls)
+
+        let newThingyShitPiece = new StickyNote(this.temp)
+
+        
     } 
     dragass(eventArg) {
 
@@ -18,21 +24,23 @@ export default class MaketempDiv {
             height: `${eventArg.clientY - this.initPos[1]}px`
         })
 
-        this.father.parentElement.addEventListener('mouseup', (e) => {
+        this.father.parentElement.addEventListener('mouseup', upfnCls = (e) => {
             this.close(e)
+
+            console.log('still in selecting')
         })
     }
     onclickFn(eventArg) {
         this.initPos = [eventArg.clientX, eventArg.clientY];
 
-        this.temp = el('div', this.father, ['class', 'tempo'])
+        this.temp = el('div', this.father.parentElement, ['class', 'tempo'])
     
         css(this.temp, {
             left: `${this.initPos[0] - document.querySelector('.tskbr').clientWidth}px`,
             top: `${this.initPos[1] + this.father.parentElement.scrollTop}px`
         })
 
-        document.addEventListener('mousemove', someshit = (e) => {
+        document.addEventListener('mousemove', dragfnCls = (e) => {
             this.dragass(e)
         })
     }
