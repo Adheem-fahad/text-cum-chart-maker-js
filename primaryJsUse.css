@@ -103,9 +103,3 @@ h3:hover {
     left: 0;
     background-color: rgba(38, 42, 230, 0.469);
 }
-.kundi {
-    position: fixed;
-    left: 0px;
-    height: 40px;
-    background-color: red;
-}

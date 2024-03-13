@@ -99,5 +99,7 @@ export function taskbarCompts(site, active) {
       if(x.extra) x.extra(DOM)
     })
 
+    let activa = componentsObj[4].DOM;
+    
     return componentsObj;
 }

@@ -1,0 +1,4 @@
+eventlisteners default:
+ - DOMcontentloaded
+ - keydown
+ - mousedown (selecing)
