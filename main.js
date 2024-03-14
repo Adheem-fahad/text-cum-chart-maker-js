@@ -2,7 +2,7 @@ import { el, css } from './utilities.js'
 import {taskbarCompts} from './task.js'
 import creator from './inputTake.js'
 import TempDivMker from './selecting.js'
-// import { StickyNote } from './stickyNote.js'
+import { StickyNote } from './stickyNote.js'
 
 class MainClass {
     constructor() {

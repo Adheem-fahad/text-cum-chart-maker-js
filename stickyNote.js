@@ -2,7 +2,7 @@ import { el, css } from './utilities.js'
 import Creator from './inputTake.js'
 
 
-let mousemovefn, mousedownfn;
+let mousemovefn, mousedownfn, controller = new AbortController();
 
 export class StickyNote {
     constructor(element) {
@@ -14,13 +14,17 @@ export class StickyNote {
     keyFn() {
         this.father.addEventListener('mousedown', mousedownfn = (e) => {
             this.mousetouch(e)
+
+            this.father.addEventListener('mouseup', (e) => {
+                this.closeDrag()
+            })
         }) 
-        this.father.addEventListener('mouseup', (e) => {
-            this.closeDrag()
-        })
     }
     closeDrag() {
-        document.removeEventListener('mousemove', mousemovefn, false);
+        console.log('close')
+
+        document.removeEventListener('mousemove', mousemovefn)
+
         this.father.style.border = '2px solid rgba(92, 92, 255, 0.358)'
     }
     draggable(e, num1, num2) {
@@ -35,6 +39,9 @@ export class StickyNote {
     mousetouch(eventArg) {
         document.addEventListener('mousemove', mousemovefn = (e) => { 
             this.draggable(e, eventArg.offsetX, eventArg.offsetY)
+
+            console.log('drag')
+        // }, { signal: controller.signal })
         })
         this.father.style.border = '2px solid rgba(177, 177, 255, 0.542)'
     }

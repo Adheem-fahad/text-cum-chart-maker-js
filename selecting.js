@@ -1,7 +1,7 @@
 import { StickyNote } from './stickyNote.js';
 import { el, css } from './utilities.js';
 
-let dragfnCls, upfnCls;
+let dragfnCls, upfnCls, controller = new AbortController();
 
 export default class MaketempDiv {
     constructor(x, y) {
@@ -13,11 +13,11 @@ export default class MaketempDiv {
         this.oner = 0
     }
     close(eventArg) {
+        console.log('why am i called!')
         eventArg.preventDefault()
         
         document.removeEventListener('mousemove', dragfnCls)
-        this.father.parentElement.removeEventListener('mouseup', upfnCls)
-
+        
         if(this.counter == 1) {
             let clonedDIV = el('div', this.father.parentElement, ['class', 'box'])
             css(clonedDIV, {
@@ -27,10 +27,13 @@ export default class MaketempDiv {
                 left: this.temp.style.left
             })
             let newSticky = new StickyNote(clonedDIV)
-
+            
             this.father.parentElement.removeChild(this.temp)
+            
+            controller.abort()
         }
         this.counter++
+        
     } 
     dragass(eventArg) {
         // console.log('drag')
@@ -58,7 +61,7 @@ export default class MaketempDiv {
                 this.father.parentElement.addEventListener('mouseup', upfnCls = (e) => {
                     console.log('plsls')
                     this.close(e)
-                })
+                }, { signal: controller.signal } )
             }
         })
     }
