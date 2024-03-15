@@ -1,22 +1,42 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@600&display=swap');
 
+.tskbrdiv {
+    background-color: white;
+    
+}
 .constrct {
     aspect-ratio: 1;
+    position: relative;
+    transition: 0.2s ease-in-out;
+}
+.constrct span,
+.constrct div {
+    left: 50%;
+    top: 50%;
 
-    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/015/286/969/small/plus-sign-icon-free-png.png');
-    background-position: center;
-    background-size: 40px;
-    background-repeat: no-repeat;
+    translate: -50%;
+    position: absolute;
+    width: 27px;
+    height: 4px;
+    background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(112, 36, 199));
+    border-radius: 1px;
 
     transition: 0.2s ease-in-out;
+}
+.constrct:hover span {
+    transform: rotate(-40deg);
+}
+.constrct:hover div {
+    transform: rotate(135deg);
 }
 .constrct:hover,
 .fillee:hover,
 .thame:hover {
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.501);
+    box-shadow: 0 0 50px rgba(54, 49, 49, 0.585);
+    background-color: rgba(127, 127, 233, 0.503);
 }
 
 .fillee {

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10rem;
+            height: 10rem;
+            background-color: red;
+        }
+        .selected {
+            position: absolute;
+            background-color: rgba(0, 0, 255, 0.365);
+            border: 1px solid blue;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box"></div>
+    <script>
+        function el(x, y, a) {
+            let element = document.createElement(x);
+            if(y) {
+                y.appendChild(element)
+            }
+            if(a) {
+                element.setAttribute(a[0], a[1]);
+            }
+            return element;
+        }
+        function css(x, obj) {
+            for(let i in obj) {
+                x.style[i] = obj[i]
+            }
+        }
+
+
+        let mousemovefn, temp, initPos, controlle = new AbortController();
+        const DOM = document.documentElement
+
+        function clickFn(arg) {
+            // click thingy
+
+            temp = el('div', DOM, ['class', 'selected'])
+
+            initPos = [arg.clientY, arg.clientX]
+            css(temp, {
+                top: `${initPos[0]}px`,
+                left: `${initPos[1]}px`,
+            })
+
+            document.addEventListener('mousemove', mousemovefn = (e) => {
+                dragFn(e)
+            });
+
+            document.addEventListener('mouseup', (e) => {
+                e.stopPropagation()
+                console.log('UP')
+                console.log('')
+                close()
+            }, { signal: controlle.signal })
+        }
+
+        function dragFn(arg) {
+            // drag thingy
+
+            css(temp, {
+                width: `${arg.clientX - initPos[1]}px`,
+                height: `${arg.clientY - initPos[0]}px`,
+            })
+        }
+
+        function close() {
+            // mouse is up
+            controlle.abort()
+        }
+
+
+        DOM.addEventListener('mousedown', (e) => {
+            clickFn(e)
+        })
+    </script>
+</body>
+</html>
