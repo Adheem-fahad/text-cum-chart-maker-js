@@ -15,14 +15,12 @@ export class StickyNote {
         this.father.addEventListener('mousedown', mousedownfn = (e) => {
             this.mousetouch(e)
 
-            this.father.addEventListener('mouseup', (e) => {
+            this.father.onmouseup = (e) => {
                 this.closeDrag()
-            })
+            }
         }) 
     }
     closeDrag() {
-        console.log('close')
-
         document.removeEventListener('mousemove', mousemovefn)
 
         this.father.style.border = '2px solid rgba(92, 92, 255, 0.358)'

@@ -3,6 +3,7 @@
 
 .tskbrdiv {
     background-color: white;
+    box-shadow: 0 0 40px rgba(128, 128, 128, 0.065);
     
 }
 .constrct {
@@ -30,9 +31,7 @@
 .constrct:hover div {
     transform: rotate(135deg);
 }
-.constrct:hover,
-.fillee:hover,
-.thame:hover {
+.tskbrdiv:hover {
     cursor: pointer;
     border: none;
     box-shadow: 0 0 50px rgba(54, 49, 49, 0.585);
@@ -53,13 +52,22 @@
 .thame {
     aspect-ratio: 1;
 
-    background-image: url('https://png.pngtree.com/png-vector/20190328/ourmid/pngtree-vector-sun-icon-png-image_883996.jpg');
+    background-image: url('https://cdn-icons-png.flaticon.com/512/54/54241.png');
     background-position: center;
-    background-size: 40px;
+    background-size: 30px;
     background-repeat: no-repeat;
     transition: 0.2s linear;
 }
 
+.decor {
+    aspect-ratio: 1;
+
+    background-image: url('https://cdn-icons-png.freepik.com/256/66/66246.png');
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    transition: 0.2s linear;
+}
 .box  {
     /* display: flex;
     justify-content: center;

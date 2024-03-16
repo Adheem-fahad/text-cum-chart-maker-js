@@ -43,7 +43,7 @@
         }
 
 
-        let mousemovefn, temp, initPos, controlle = new AbortController();
+        let mousemovefn, temp, initPos;
         const DOM = document.documentElement
 
         function clickFn(arg) {
@@ -56,17 +56,15 @@
                 top: `${initPos[0]}px`,
                 left: `${initPos[1]}px`,
             })
-
+            
+            document.onmouseup = (e) => {
+                e.stopPropagation()
+                close()
+            }
             document.addEventListener('mousemove', mousemovefn = (e) => {
                 dragFn(e)
             });
 
-            document.addEventListener('mouseup', (e) => {
-                e.stopPropagation()
-                console.log('UP')
-                console.log('')
-                close()
-            }, { signal: controlle.signal })
         }
 
         function dragFn(arg) {
@@ -80,7 +78,8 @@
 
         function close() {
             // mouse is up
-            controlle.abort()
+            document.onmouseup = null
+            document.removeEventListener('mousemove', mousemovefn)
         }
 
 

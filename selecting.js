@@ -4,35 +4,37 @@ import { el, css } from './utilities.js';
 let dragfnCls, upfnCls, controller = new AbortController();
 
 export default class MaketempDiv {
-    constructor(x, y) {
+    constructor(x) {
         this.father = x;
         this.onstart();
-        this.y = y;
-
-        this.counter = 0
-        this.oner = 0
+        // this.counter = 0; this.oner = 0
+    }
+    checkifitisTooSmall() {
+        if((this.finalPos[1] - this.initPos[1]) < 10) {
+            document.querySelector('.actbr').removeChild(this.temp)
+        }
     }
     close(eventArg) {
-        console.log('why am i called!')
+        this.finalPos = [eventArg.clientX, eventArg.clientY]
+
+        this.checkifitisTooSmall()
         eventArg.preventDefault()
         
         document.removeEventListener('mousemove', dragfnCls)
+
+        let clonedDIV = el('div', this.father.parentElement, ['class', 'box'])
+        css(clonedDIV, {
+            width: `${this.temp.clientWidth}px`,
+            height: `${this.temp.clientHeight}px`,
+            top: this.temp.style.top,
+            left: this.temp.style.left
+        })
+        let newSticky = new StickyNote(clonedDIV)
         
-        if(this.counter == 1) {
-            let clonedDIV = el('div', this.father.parentElement, ['class', 'box'])
-            css(clonedDIV, {
-                width: `${this.temp.clientWidth}px`,
-                height: `${this.temp.clientHeight}px`,
-                top: this.temp.style.top,
-                left: this.temp.style.left
-            })
-            let newSticky = new StickyNote(clonedDIV)
-            
-            this.father.parentElement.removeChild(this.temp)
-            
-            controller.abort()
-        }
-        this.counter++
+        console.log(document.documentElement.children)
+        // document.documentElement.removeChild(this.temp)
+        
+        document.onmouseup = null;
         
     } 
     dragass(eventArg) {
@@ -56,14 +58,10 @@ export default class MaketempDiv {
         
         document.addEventListener('mousemove', dragfnCls = (e) => {
             this.dragass(e)
-            this.oner++
-            if(this.oner <= 3) {
-                this.father.parentElement.addEventListener('mouseup', upfnCls = (e) => {
-                    console.log('plsls')
-                    this.close(e)
-                }, { signal: controller.signal } )
-            }
         })
+        this.father.parentElement.onmouseup = (e) => {
+            this.close(e)
+        }
     }
     onstart() {
         this.father.addEventListener('mousedown', (e) => {

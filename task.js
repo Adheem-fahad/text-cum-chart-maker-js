@@ -10,6 +10,10 @@ let componentsObj = [
     name: 'Decor',
     event: () => {
 
+    },
+    extra: (passMe) => {
+      passMe.classList.add('decor')
+      passMe.textContent = ''
     }
   },
   // theme
