@@ -133,3 +133,5 @@ h3:hover {
     border: 1px solid blue;
     background-color: rgba(38, 41, 230, 0.319);
 }
+
+body { font-family: 'poppins'; }
