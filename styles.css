@@ -34,10 +34,12 @@
     border: none;
     font-size: 45px;
     overflow: hidden;
+    padding: 1rem 0 0 4rem;
 }
 .mainEditor h1 {
     display: inline;
     margin-left: 20px;
+    line-height: 100px;
 }
 
 

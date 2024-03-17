@@ -3,19 +3,15 @@ import {taskbarCompts} from './task.js'
 import creator from './inputTake.js'
 import TempDivMker from './selecting.js'
 import { StickyNote } from './stickyNote.js'
+import TextSelect from './textSelect.js'
 
 class MainClass {
     constructor() {
         this.creator = new creator(document.querySelector('.mainEditor'));
         this.alls = [this.creator]
         this.tsk = taskbarCompts(this.alls)
-        // this.clickEventManager()
-
-        console.log(this.creator.father)
-
-
-        // this.devlop()
-        this.tempdivmnger = new TempDivMker(this.creator.father, this.tempDivstore)
+        new TextSelect();
+        // this.tempdivmnger = new TempDivMker(this.creator.father, this.tempDivstore)
     }
 }
 

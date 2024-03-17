@@ -43,9 +43,9 @@ let componentsObj = [
   {
     name: 'Construct',
     event: (site) => {
-      let newEl = new StickyNote(el('div', ACT, ['class', 'box']))
+      // let newEl = new StickyNote(el('div', ACT, ['class', 'box']))
 
-      site.push(newEl)
+      // site.push(newEl)
 
     },
     extra: (passMe) => {
