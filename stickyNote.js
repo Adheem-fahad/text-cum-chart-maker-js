@@ -8,8 +8,6 @@ export class StickyNote {
     constructor(element) {
         this.father = element;
         this.creaiososis = new Creator(this.father)
-        
-        this.keyFn()
     }
     keyFn() {
         this.father.addEventListener('mousedown', mousedownfn = (e) => {
@@ -39,7 +37,6 @@ export class StickyNote {
             this.draggable(e, eventArg.offsetX, eventArg.offsetY)
 
             console.log('drag')
-        // }, { signal: controller.signal })
         })
         this.father.style.border = '2px solid rgba(177, 177, 255, 0.542)'
     }

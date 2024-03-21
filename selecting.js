@@ -15,12 +15,16 @@ export default class MaketempDiv {
         }
     }
     close(eventArg) {
+        // console.log("this is", [... eventArg.target.classList].includes('box'))
+        document.removeEventListener('mousemove', dragfnCls)
+
+        eventArg.preventDefault()
+        if([...eventArg.target.classList].includes('box')) {
+            return
+        }
         this.finalPos = [eventArg.clientX, eventArg.clientY]
 
         this.checkifitisTooSmall()
-        eventArg.preventDefault()
-        
-        document.removeEventListener('mousemove', dragfnCls)
 
         let clonedDIV = el('div', this.father.parentElement, ['class', 'box'])
         css(clonedDIV, {
@@ -30,15 +34,15 @@ export default class MaketempDiv {
             left: this.temp.style.left
         })
         let newSticky = new StickyNote(clonedDIV)
-        
-        console.log(document.documentElement.children)
+
+        // console.log(this.temp)
+        if(this.temp.parentElement) this.temp.parentElement.removeChild(this.temp)
         // document.documentElement.removeChild(this.temp)
         
         document.onmouseup = null;
         
     } 
     dragass(eventArg) {
-        // console.log('drag')
         css(this.temp, {
             width: `${eventArg.clientX - this.initPos[0]}px`,
             height: `${eventArg.clientY - this.initPos[1]}px`
@@ -46,7 +50,6 @@ export default class MaketempDiv {
 
     }
     onclickFn(eventArg) {
-        // console.log('click')
         this.initPos = [eventArg.clientX, eventArg.clientY];
         
         this.temp = el('div', this.father.parentElement, ['class', 'tempo'])

@@ -11,9 +11,19 @@ class MainClass {
         this.alls = [this.creator]
         this.tsk = taskbarCompts(this.alls)
         new TextSelect();
-        // this.tempdivmnger = new TempDivMker(this.creator.father, this.tempDivstore)
+        this.checkType()
+        
+        this.tempdivmnger = new TempDivMker(this.creator.father, this)
+    }
+    checkType() {
+        document.querySelector('.actbr').addEventListener('click', (e) => {
+            this.cacheEl = e.target
+            if(this.cacheEl == this.creator.father) this.creator.shouldType = true
+            else this.creator.shouldType = false
+        })
     }
 }
 
 let mainobj = new MainClass()
-// let Creator = new creator(document.querySelector('code'))
+
+export { mainobj }
